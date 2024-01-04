@@ -25,9 +25,9 @@ public class UserDAO {
 	
 	//로그인
 	public int login(String userID, String userPassword) {
-		String SQLquery = "SELECT userPassword FROM USER WHERE userID = ?";
+		String sqlQuery = "SELECT userPassword FROM USER WHERE userID = ?";
 		try{
-			pstmt = conn.prepareStatement(SQLquery);
+			pstmt = conn.prepareStatement(sqlQuery);
 			pstmt.setString(1,userID);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -46,9 +46,9 @@ public class UserDAO {
 	
 	//회원가입
 	public int join(User user) {
-		String SQLquery = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
+		String sqlQuery = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
 		try {
-			pstmt = conn.prepareStatement(SQLquery);
+			pstmt = conn.prepareStatement(sqlQuery);
 			pstmt.setString(1, user.getUserID());
 			pstmt.setString(2, user.getUserPassword());
 			pstmt.setString(3, user.getUserName());
