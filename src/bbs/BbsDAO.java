@@ -131,5 +131,32 @@ public class BbsDAO {
 			}
 			return null;
 		}
-	
+		
+		//게시글 수정
+		public int update(int bbsID, String bbsTitle, String bbsContent) {
+			String sqlQuery = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+				pstmt.setString(1, bbsTitle);
+				pstmt.setString(2, bbsContent);
+				pstmt.setInt(3, bbsID);
+				return pstmt.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return -1; //데이터베이스 오류
+		}
+		
+		//게시글 삭제
+		public int delete(int bbsID) {
+			String sqlQuery = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";// bbsAvailable 값만 수정하여 DB 데이터를 직접 삭제하지 않아도 삭제된것처럼 동작하게 됨
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+				pstmt.setInt(1, bbsID);
+				return pstmt.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return -1; //데이터베이스 오류
+		}
 }
