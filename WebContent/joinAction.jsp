@@ -14,12 +14,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인 진행 화면</title>
+<title>회원가입 진행 웹페이지</title>
 </head>
 <body>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null){
+		if(session.getAttribute("userID") != null){//이미 세션 정보가 있다면 그 세션 정보를 가져옴
 			userID = (String)session.getAttribute("userID");
 		}
 		if(userID != null){

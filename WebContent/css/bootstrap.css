@@ -4174,6 +4174,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     border-radius: 4px;
   }
 }
+/*최소 너비가 768px인 미디어에서 navbar-header를 좌측으로 표시함*/
 @media (min-width: 768px) {
   .navbar-header {
     float: left;
@@ -4291,6 +4292,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-left: -15px;
   }
 }
+
 .navbar-toggle {
   position: relative;
   float: right;

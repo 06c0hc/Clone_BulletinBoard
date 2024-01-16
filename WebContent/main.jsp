@@ -8,12 +8,12 @@
 <meta name="viewport" content="width=device-width", inital-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>로그인 홈페이지</title>
+<title>메인 홈페이지</title>
 </head>
 <body>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null){
+		if(session.getAttribute("userID") != null){//세션정보가 있다면 그 세션 정보를 가져옴
 			userID = (String)session.getAttribute("userID");
 		}
 	%>
@@ -34,7 +34,7 @@
 				<li><a href="bbs.jsp">게시판</a></li>
 			</ul>
 			<%
-				if(userID == null){
+				if(userID == null){//로그인이 되어있지 않다면
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -49,7 +49,7 @@
 				</li>
 			</ul>
 			<%
-				}else{	
+				}else{//이미 로그인이 되어있다면(그 회원은 회원가입 페이지로는 접속할 수 없음)
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">

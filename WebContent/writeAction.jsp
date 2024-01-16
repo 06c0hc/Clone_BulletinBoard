@@ -12,12 +12,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인 진행 화면</title>
+<title>게시글 등록 진행 웹페이지</title>
 </head>
 <body>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null){
+		if(session.getAttribute("userID") != null){//이미 세션 정보가 있다면 그 세션을 가져옴
 			userID = (String)session.getAttribute("userID");
 		}
 		//로그인 되어있는지 확인
@@ -28,6 +28,7 @@
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		}else{
+			//게시글 제목과 내용이 모두 작성되었는지 확인
 			if(bbs.getBbsTitle() == null || bbs.getBbsContent() == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -35,6 +36,7 @@
 				script.println("history.back()");
 				script.println("</script>");
 			}else{
+				//게시글 등록 처리
 				BbsDAO bbsDAO = new BbsDAO();
 				int result = bbsDAO.wrtie(bbs.getBbsTitle(), userID, bbs.getBbsContent());
 				if(result == -1){//DB오류 발생시

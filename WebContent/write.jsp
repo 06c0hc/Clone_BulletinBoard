@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width", inital-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>로그인 홈페이지</title>
+<title>게시글 작성 웹페이지</title>
 </head>
 <body>
 	<%
@@ -70,14 +70,14 @@
 	</nav>
 	<div class = "container">
 		<div class = "row">
-		<form method="post" action="writeAction.jsp">
+		<form method="post" action="writeAction.jsp"><!--HTTP의 POST방식으로 전송 -->
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
+				<thead><!--게시글 작성 머리글 표시-->
 					<tr>
-						<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
+						<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시글 작성 양식</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody><!--게시글 작성 본문 표시-->
 					<tr>
 						<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
 					</tr>
@@ -86,7 +86,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+			<input type="submit" class="btn btn-primary pull-right" value="게시글 등록"><!--게시글 등록 버튼-->
 		</form>
 		</div>
 	</div>

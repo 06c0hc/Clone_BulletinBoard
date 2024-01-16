@@ -1,11 +1,12 @@
 package user;
-
+//사용자(User) 자바 빈즈 객체
 public class User {
-	private String userID;
-	private String userPassword;
-	private String userName;
-	private String userGender;
-	private String userEmail;
+	private String userID;//ID
+	private String userPassword;//비밀번호
+	private String userName;//이름
+	private String userGender;//성별
+	private String userEmail;//이메일
+	
 	public String getUserID() {
 		return userID;
 	}

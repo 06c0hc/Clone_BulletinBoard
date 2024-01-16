@@ -10,12 +10,12 @@
 <meta name="viewport" content="width=device-width", inital-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>로그인 홈페이지</title>
+<title>게시글 수정 웹페이지</title>
 </head>
 <body>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null){
+		if(session.getAttribute("userID") != null){//이미 세션 정보가 있다면 그 세션 정보를 가져옴
 			userID = (String)session.getAttribute("userID");
 		}
 		if(userID == null){
@@ -25,11 +25,12 @@
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		}
+		//게시글ID 추출
 		int bbsID = 0;
 		if(request.getParameter("bbsID") != null){
 			bbsID = Integer.parseInt(request.getParameter("bbsID"));
 		}
-		if(bbsID == 0){
+		if(bbsID == 0){//유효한 게시글인지 확인
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
@@ -37,7 +38,7 @@
 			script.println("</script>");
 		}
 		Bbs bbs = new BbsDAO().getBbs(bbsID);
-		if(!userID.equals(bbs.getUserID())){
+		if(!userID.equals(bbs.getUserID())){//현재 로그인된 사용자가 게시글 작성자와 동일한지 확인 
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('수정 권한이 없습니다.')");
@@ -75,23 +76,23 @@
 	</nav>
 	<div class = "container">
 		<div class = "row">
-		<form method="post" action="updateAction.jsp?bbsID=<%= bbsID%>">
+		<form method="post" action="updateAction.jsp?bbsID=<%= bbsID%>"><!--HTTP의  POST 방식으로 전송-->
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
+				<thead><!--게시글 수정 머리글-->
 					<tr>
-						<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글 수정 양식</th>
+						<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시글 수정 양식</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody><!--게시글 수정 본문-->
 					<tr>
 						<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50" value="<%= bbs.getBbsTitle()%>"></td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"><%= bbs.getBbsContent() %>></textarea></td>
+						<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"><%= bbs.getBbsContent() %></textarea></td>
 					</tr>
 				</tbody>
 			</table>
-			<input type="submit" class="btn btn-primary pull-right" value="글 수정">
+			<input type="submit" class="btn btn-primary pull-right" value="수정 완료"><!--수정 완료 버튼-->
 		</form>
 		</div>
 	</div>

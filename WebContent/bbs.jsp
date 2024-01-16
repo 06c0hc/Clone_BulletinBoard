@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width", inital-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>게시판 웹 사이트</title>
+<title>게시판 웹페이지</title>
 <style type="text/css">
 	a, a:hover{
 		color: #000000;
@@ -22,11 +22,11 @@
 <body>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null){
+		if(session.getAttribute("userID") != null){//이미 세션 정보가 있다면 그  세션을 가져옴
 			userID = (String)session.getAttribute("userID");
 		}
 		int pageNumber = 1;
-		if(request.getParameter("pageNumber") != null){
+		if(request.getParameter("pageNumber") != null){//
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
 	%>
@@ -47,7 +47,7 @@
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
 			</ul>
 			<%
-				if(userID == null){
+				if(userID == null){//로그인이 되어있지 않다면
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -62,7 +62,7 @@
 				</li>
 			</ul>
 			<%
-				}else{	
+				}else{//로그인이 되어있다면
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -83,8 +83,9 @@
 	</nav>
 	<div class = "container">
 		<div class = "row">
+			<!--게시글 목록 테이블 생성-->
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
+				<thead><!--게시판 목록 머리글 표시-->
 					<tr>
 						<th style="background-color: #eeeeee; text-align: center;">번호</th>
 						<th style="background-color: #eeeeee; text-align: center;">제목</th>
@@ -92,7 +93,7 @@
 						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody><!--게시판 목록 본문 표시-->
 						<%
 							BbsDAO bbsDAO = new BbsDAO();
 							ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
@@ -110,17 +111,17 @@
 				</tbody>
 			</table>
 			<%
-				if(pageNumber != 1){
+				if(pageNumber != 1){//첫 페이지가 아니면 이전 페이지로 이동 가능
 			%>
-				<a href="bbs.jsp?pageNumber=<%=pageNumber -1 %>" class="btn btn-success btn-arrow-left">이전</a>
+				<a href="bbs.jsp?pageNumber=<%=pageNumber -1 %>" class="btn btn-success btn-arrow-left">이전</a><!--이전 버튼-->
 			<%		
-				}if(bbsDAO.nextPage(pageNumber + 1)){
+				}if(bbsDAO.nextPage(pageNumber + 1)){//다음 페이지가 존재하면 다음 페이지로 이동 가능
 			%>
-				<a href="bbs.jsp?pageNumber=<%=pageNumber +1 %>" class="btn btn-success btn-arrow-right">다음</a>
+				<a href="bbs.jsp?pageNumber=<%=pageNumber +1 %>" class="btn btn-success btn-arrow-right">다음</a><!--다음 버튼-->
 			<%
 				}
 			%>
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a><!--글쓰기 버튼 -->
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

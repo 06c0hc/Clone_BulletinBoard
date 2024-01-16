@@ -1,12 +1,13 @@
 package bbs;
 
+//게시판(BBS) 자바빈즈 객체
 public class Bbs {
-	private int bbsID;
-	private String bbsTitle;
-	private String userID;
-	private String bbsDate;
-	private String bbsContent;
-	private int bbsAvailable;
+	private int bbsID;//게시글 ID
+	private String bbsTitle;// 게시글 제목
+	private String userID;//작성자 ID
+	private String bbsDate;//작성일
+	private String bbsContent;//게시글 내용
+	private int bbsAvailable;////현재 게시글의 존재 여부(1이면 존재, 0이면 존재하지 않음(삭제됨))
 	
 	public int getBbsID() {
 		return bbsID;
@@ -42,7 +43,7 @@ public class Bbs {
 		return bbsAvailable;
 	}
 	public void setBbsAvailable(int bbsAvailable) {
-		this.bbsAvailable = bbsAvailable; //현재 게시글의 존재 여부를 나타냄(1이면 존재, 0이면 존재하지 않음(삭제됨))
+		this.bbsAvailable = bbsAvailable; 
 	}
 	
 	

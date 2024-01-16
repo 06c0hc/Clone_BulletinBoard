@@ -11,15 +11,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인 진행 화면</title>
+<title>로그인 진행 웹페이지</title>
 </head>
 <body>
 	<%
-		//이미 로그인이 된 사람은 회원가입 페이지로 접속할 수 없음
 		String userID = null;
-		if(session.getAttribute("userID") != null){
+		if(session.getAttribute("userID") != null){//이미 세션정보가 있다면(=이미 로그인이 되어있음을 의미함) 그 세션을 가져옴
 			userID = (String)session.getAttribute("userID");
 		}
+		//이미 로그인이 되어있다면 main페이지로 이동
 		if(userID != null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -27,30 +27,33 @@
 			script.println("location.href = 'main.jsp'");
 			script.println("</script>");
 		}
+		
+		//로그인 진행
 		UserDAO userDAO = new UserDAO();
 		int result = userDAO.login(user.getUserID(), user.getUserPassword());
-		if(result == 1){
-			session.setAttribute("userID", user.getUserID());//세션 할당
+		
+		if(result == 1){//로그인 성공 시
+			session.setAttribute("userID", user.getUserID());//세션  할당
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("location.href = 'main.jsp'");
 			script.println("</script>");
 		}
-		if(result == 0){
+		if(result == 0){//비밀번호 불일치 시
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('비밀번호가 틀립니다.')");
 			script.println("history.back()");
 			script.println("</script>");
 		}
-		if(result == -1){
+		if(result == -1){//아이디 미존재 시
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('존재하지 않는 아이디입니다.')");
 			script.println("history.back()");
 			script.println("</script>");
 		}
-		if(result == -2){
+		if(result == -2){//데이터베이스 오류 발생 시
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('데이터베이스 오류가 발생했습니다.')");

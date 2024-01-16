@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-		location.href = 'main.jsp';
+		location.href = 'main.jsp';//javascript 코드, 현재 페이지를 main.jsp페이지로 이동
 	</script>
 </body>
 </html>

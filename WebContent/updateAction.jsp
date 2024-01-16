@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인 진행 화면</title>
+<title>게시글 수정 진행 웹페이지</title>
 </head>
 <body>
 	<%
@@ -25,10 +25,12 @@
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		}
+		//게시글 ID 추출
 		int bbsID = 0;
 		if(request.getParameter("bbsID") != null){
 			bbsID = Integer.parseInt(request.getParameter("bbsID"));
 		}
+		//유효한 게시글인지 확인
 		if(bbsID == 0){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -36,7 +38,8 @@
 			script.println("location.href = 'bbs.jsp'");
 			script.println("</script>");
 		}
-		Bbs bbs = new BbsDAO().getBbs(bbsID);
+		Bbs bbs = new BbsDAO().getBbs(bbsID);//게시글ID와 일치하는 게시글을 가져옴
+		//현재 접속중인 사용자와 게시글 작성자가 동일한지 확인
 		if(!userID.equals(bbs.getUserID())){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -44,6 +47,7 @@
 			script.println("location.href = 'bbs.jsp'");
 			script.println("</script>");
 		}else{
+			//게시글 수정 양식이 모두 작성되었는지 확인
 			if(request.getParameter("bbsTitle") == null || request.getParameter("bbsContent") == null
 					|| request.getParameter("bbsTitle").equals("") || request.getParameter("bbsContent").equals("")){
 				PrintWriter script = response.getWriter();
@@ -52,6 +56,7 @@
 				script.println("history.back()");
 				script.println("</script>");
 			}else{
+				//게시글 수정 처리 진행
 				BbsDAO bbsDAO = new BbsDAO();
 				int result = bbsDAO.update(bbsID, request.getParameter("bbsTitle"), request.getParameter("bbsContent"));
 				if(result == -1){//DB오류 발생시
@@ -63,7 +68,7 @@
 				}else{
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("location.href = 'bbs.jsp'");
+					script.println("location.href = 'view.jsp'");//수정된 내용을 확인할 수 있도록 view.jsp로 이동
 					script.println("</script>");
 				}
 			}	

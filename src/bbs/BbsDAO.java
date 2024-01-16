@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//BBS 데이터 접근 객체
 public class BbsDAO {
 	private Connection conn;
 	private ResultSet rs;
@@ -23,13 +24,14 @@ public class BbsDAO {
 		}
 	}
 	
+	//작성일 검색
 	public String getDate() {
 		String sqlQuery = "SELECT NOW()";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				return rs.getString(1);
+				return rs.getString(1);//작성일(현재 날짜 및 시간) 반환
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -52,6 +54,7 @@ public class BbsDAO {
 		return -1; //데이터베이스 오류
 	}
 	
+	//게시글 등록을 위한 데이터 추가
 	public int wrtie(String bbsTitle, String userID, String bbsContent) {
 		String sqlQuery = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?)";
 		try {
@@ -61,7 +64,7 @@ public class BbsDAO {
 			pstmt.setString(3, userID);
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, bbsContent);
-			pstmt.setInt(6, 1);//게시글이 작성되었으므로 bbsAvailable 1이 됨
+			pstmt.setInt(6, 1);//게시글이 작성되었으므로 bbsAvailable을 1로 설정
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -69,8 +72,8 @@ public class BbsDAO {
 		return -1; //데이터베이스 오류
 	}
 	
-	//pageNumber에 보여질 게시글을 가져옴(페이지당 최대 게시글 수는 10개 까지임)
-		public ArrayList<Bbs> getList(int pageNumber){//
+		//pageNumber에 보여질 게시글을 가져옴(페이지당 최대 게시글 수는 10개 까지임)
+		public ArrayList<Bbs> getList(int pageNumber){
 				String sqlQuery = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
 				ArrayList<Bbs> list = new ArrayList<Bbs>();
 				try{
@@ -109,7 +112,7 @@ public class BbsDAO {
 				return false;
 		}
 		
-		//게시글을 가져옴
+		//게시글ID에 맞는 게시글을 검색
 		public Bbs getBbs(int bbsID) {
 			String sqlQuery = "SELECT * FROM BBS WHERE bbsID = ?";
 			try{
@@ -129,7 +132,7 @@ public class BbsDAO {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			return null;
+			return null;//게시글 ID와 일치하는 게시글이 없다면 null 반환
 		}
 		
 		//게시글 수정
@@ -153,7 +156,7 @@ public class BbsDAO {
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 				pstmt.setInt(1, bbsID);
-				return pstmt.executeUpdate();
+				return pstmt.executeUpdate();//실행된 결과의 데이터(행) 개수, 없는 경우 0을 반환
 			}catch(Exception e) {
 				e.printStackTrace();
 			}

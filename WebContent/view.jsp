@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width", inital-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>로그인 홈페이지</title>
+<title>게시글 보기 웹페이지</title>
 </head>
 <body>
 	<%
@@ -114,8 +114,8 @@
 			<%
 				if(userID != null && userID.equals(bbs.getUserID())){
 			%>
-					<a href="update.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">수정</a>
-					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">삭제</a>
+					<a href="update.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">수정</a><!--수정 버튼-->
+					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">삭제</a><!--삭제 버튼-->
 			<%		
 				}
 			%>
