@@ -103,7 +103,9 @@
 			</a>
 		</div>
 	</div>
+	<!-- 제이쿼리 자바스크릡트 추가 -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<!-- 부트스트랩 자바스크립트 추가 -->
 	<script src="js/bootstrap.js"></script>
 </body>
 </html>
