@@ -1,5 +1,5 @@
 # JSP 게시판 웹 사이트
-유튜버 나동빈님의 "JSP게시판 만들기 강좌"를 클론 코딩하며 공부한 내용입니다.
+유튜버 나동빈님의 [JSP게시판 만들기 강좌](https://www.youtube.com/playlist?list=PLRx0vPvlEmdAZv_okJzox5wj2gG_fNh_6)를 클론 코딩해서 만든 게시판 프로젝트입니다. 현재 이 게시판에 추가해보고 싶은 사항들을 기획하고 적용해보고 있습니다.
 #
 
 # 기간
@@ -12,12 +12,13 @@
 + Web Server : Apache Tomcat 8.5.35
 + DBMS : MySQL 5.7.18
 + Framework : Bootstrap 3.3.7
-+ Protocol : HTTP
++ Protocol : HTTP(S)
 #
 
 # 프로젝트를 만들어보면서 알게된 것들
 + Network
-  - HTTP 통신 방식에서 세션을 사용하여 상태정보를 유지(statusful)하는 방법을 알게 되었다.
+  - HTTP 통신 방식에 세션을 사용하여 상태정보를 유지(statusful)하는 방법을 알게 되었다.
+  - SSL 인증서를 적용하여 HTTPS 통신을 구현하는 방법을 알게 되었다.
 + DB
   - DAO(Data Access Object)를 이용하여 DB에 접근 및 데이터를 처리하는 방법을 알 수 있었다.
 + Security
@@ -27,16 +28,16 @@
   - CAFE24 웹서버 호스팅을 이용하여 직접 웹 프로젝트를 배포해봄으로써 웹 프로젝트의 배포 과정을 알 수 있었다.
 #
 
-# 이 프로젝트에 추가로 적용해볼 것들
+# 이 프로젝트에 추가로 적용할 사항들
 
 + 기능 추가 : 게시판 방문자 수 체크, 댓글 달기
-+ 통신 방식을 HTTP -> HTTPS 로 변경
-+ DBMS를  MySQL -> MariaDB로 변경
++ 통신 방식을 HTTP -> HTTPS 로 변경(적용 완료) : [HTTPS 통신 구현 과정 정리](https://itknowledgewarehouse.tistory.com/213)
++ 연동된 DBMS를  MySQL -> MariaDB로 변경
 
 #
 
 # 사이트 URL
 
-현재 CAFE24의 Tomcat서버에 배포한 상태입니다. 아래 링크를 누르면 사이트로 접속할 수 있습니다.
+현재 CAFE24 호스팅 서버에 배포된 상태입니다. 아래 링크중 하나를 누르면 사이트로 접속할 수 있습니다.
 
-<http://devchh006.cafe24.com/BBS/main.jsp>
+<https://devchh006.cafe24.com/BBS/main.jsp>
