@@ -8,6 +8,11 @@
 </head>
 <body>
 	<script>
+		if(window.location.protocol == "http:"){
+			window.location.protocol = "https:";
+		}
+	</script>
+	<script>
 		location.href = 'main.jsp';//javascript 코드, 현재 페이지를 main.jsp페이지로 이동
 	</script>
 </body>

@@ -10,6 +10,11 @@
 <title>회원가입 웹페이지</title>
 </head>
 <body>
+	<script>
+		if(window.location.protocol == "http:"){
+			window.location.protocol = "https:";
+		}
+	</script>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"

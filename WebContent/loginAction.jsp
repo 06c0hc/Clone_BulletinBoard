@@ -14,6 +14,11 @@
 <title>로그인 진행 웹페이지</title>
 </head>
 <body>
+	<script>
+		if(window.location.protocol == "http:"){
+			window.location.protocol = "https:";
+		}
+	</script>
 	<%
 		String userID = null;
 		if(session.getAttribute("userID") != null){//이미 세션정보가 있다면(=이미 로그인이 되어있음을 의미함) 그 세션을 가져옴

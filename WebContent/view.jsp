@@ -13,6 +13,11 @@
 <title>게시글 보기 웹페이지</title>
 </head>
 <body>
+	<script>
+		if(window.location.protocol == "http:"){
+			window.location.protocol = "https:";
+		}
+	</script>
 	<%
 		String userID = null;
 		if(session.getAttribute("userID") != null){

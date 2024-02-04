@@ -20,6 +20,11 @@
 </style>
 </head>
 <body>
+	<script>
+		if(window.location.protocol == "http:"){
+			window.location.protocol = "https:";
+		}
+	</script>
 	<%
 		String userID = null;
 		if(session.getAttribute("userID") != null){//이미 세션 정보가 있다면 그  세션을 가져옴
