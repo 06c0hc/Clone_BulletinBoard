@@ -10,10 +10,10 @@
 <title>로그인 웹페이지</title>
 </head>
 <body>
-	<script>
-		if(window.location.protocol == "http:"){
-			window.location.protocol = "https:";
-		}
+	<script type="text/javascript">
+	if (document.location.protocol == 'http:') {
+    	document.location.href = document.location.href.replace('http:', 'https:');
+	}
 	</script>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">

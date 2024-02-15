@@ -7,10 +7,10 @@
 <title>로그아웃 진행 웹페이지</title>
 </head>
 <body>
-	<script>
-		if(window.location.protocol == "http:"){
-			window.location.protocol = "https:";
-		}
+	<script type="text/javascript">
+	if (document.location.protocol == 'http:') {
+    	document.location.href = document.location.href.replace('http:', 'https:');
+	}
 	</script>
 	<%
 		session.invalidate();//현재 접속중인 회원의 세션을 해제
