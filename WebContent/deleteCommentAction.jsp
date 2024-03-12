@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="bbs.Bbs" %>
-<%@ page import="bbs.BbsDAO" %>
-<%@ page import="java.io.PrintWriter" %>
-<% request.setCharacterEncoding("UTF-8"); %>
+<%@ page import="java.io.PrintWriter"%>
+<%@ page import="comment.Comment"%>
+<%@ page import="comment.CommentDAO"%>
 
+<% request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 삭제 진행 웹페이지</title>
+<title>댓글 삭제 진행 웹페이지</title>
 </head>
 <body>
-	<script type="text/javascript">
+	<script>
 	if (document.location.protocol == 'http:') {
     	document.location.href = document.location.href.replace('http:', 'https:');
 	}
@@ -35,36 +35,45 @@
 		if(request.getParameter("bbsID") != null){
 			bbsID = Integer.parseInt(request.getParameter("bbsID"));
 		}
-		//유효한 게시글인지 확인
-		if(bbsID == 0){
+		//댓글 ID 추출
+		int commentID = 0;
+		if(request.getParameter("commentID") != null){
+			commentID = Integer.parseInt(request.getParameter("commentID"));
+		}
+		//유효한 댓글인지 확인
+		if(commentID == 0){
 			PrintWriter script = response.getWriter();
+			String viewAllCommentsURL = "location.href = \'viewAllComments.jsp?bbsID="+bbsID+"\'";
 			script.println("<script>");
-			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href = 'bbs.jsp'");
+			script.println("alert('유효하지 않는 댓글입니다.')");
+			script.println(viewAllCommentsURL);//전체 댓글 보기 페이지로 이동
 			script.println("</script>");
 		}
-		Bbs bbs = new BbsDAO().getBbs(bbsID);//게시글 ID와 일치하는 게시글을 가져옴
-		//현재 접속중인 사용자와 게시글 작성자가 동일한지 확인
-		if(!userID.equals(bbs.getUserID())){
+		
+		Comment comment = new CommentDAO().getComment(commentID);//댓글 ID와 일치하는 댓글을 가져옴
+		//현재 접속중인 사용자와 댓글 작성자가 동일한지 확인
+		if(!userID.equals(comment.getUserID())){
 			PrintWriter script = response.getWriter();
+			String viewAllCommentsURL = "location.href = \'viewAllComments.jsp?bbsID="+bbsID+"\'";
 			script.println("<script>");
 			script.println("alert('수정 권한이 없습니다.')");
-			script.println("location.href = 'bbs.jsp'");
+			script.println(viewAllCommentsURL);//전체 댓글 보기 페이지로 이동
 			script.println("</script>");
 		}else{
-			//게시글 삭제 처리 진행
-			BbsDAO bbsDAO = new BbsDAO();
-			int result = bbsDAO.delete(bbsID);
+			//댓글 삭제 처리 진행
+			CommentDAO cmtDAO = new CommentDAO();
+			int result = cmtDAO.delete(commentID);
 			if(result == -1){//DB오류 발생시
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('글 삭제에 실패했습니다.')");
+				script.println("alert('댓글 삭제에 실패했습니다.')");
 				script.println("history.back()");
 				script.println("</script>");
 			}else{
 				PrintWriter script = response.getWriter();
+				String viewAllCommentsURL = "location.href = \'viewAllComments.jsp?bbsID="+bbsID+"\'";
 				script.println("<script>");
-				script.println("location.href = 'bbs.jsp'");
+				script.println(viewAllCommentsURL);
 				script.println("</script>");
 			}	
 		}

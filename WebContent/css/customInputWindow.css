@@ -1,0 +1,27 @@
+
+
+/*댓글 링크 스타일*/
+.comment-link{
+	color: black;
+	display: block;
+	margin-top: 8px;
+	cursor: pointer;
+}
+
+/*답글 링크 스타일*/
+.reply-link{
+	text-decoration: underline;
+	color: blue;
+	display: block;
+	margin-top: 8px;
+	cursor: pointer;
+}
+/*입력 컨테이너 스타일(비활성화 기준)*/
+.input-container{
+	display: none;
+	margin-top: 10px;
+}
+/*활성화된 입력 컨테이너 스타일*/
+.input-container.active{
+	display: block;
+}

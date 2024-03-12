@@ -11,6 +11,8 @@
 </head>
 <body>
 	<script type="text/javascript">
+	
+	//HTTP를 HTTPS로 리다이렉트
 	if (document.location.protocol == 'http:') {
     	document.location.href = document.location.href.replace('http:', 'https:');
 	}
@@ -20,7 +22,6 @@
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collase-1"
 				aria-expanded="false">
-				<!--창이 축소되었을때 우측의 햄버거 모양 아이콘-->
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -46,12 +47,12 @@
 			</ul>
 		</div>
 	</nav>
-	
+	<!--로그인 입력 양식-->
 	<div class="container">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top: 20px;">
-				<form method="post" action="loginAction.jsp"><!--HTTP의 POST 방식으로 처리-->
+				<form method="post" action="loginAction.jsp"><!--loginAction.jsp로 이동, HTTP의 POST 방식으로 처리-->
 					<h3 style="text-align: center;">로그인 화면</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">

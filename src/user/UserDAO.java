@@ -14,7 +14,7 @@ public class UserDAO {
 	//DB 접근
 	public UserDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost/Your db Name";
+			String dbURL = "jdbc:mysql://localhost:3306/your db name";
 			String dbID = "your dbID";
 			String dbPassword = "your dbPW";
 			Class.forName("com.mysql.jdbc.Driver");
@@ -42,12 +42,12 @@ public class UserDAO {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return -2; //데이터베이스 오류 코드
+		return -2; //데이터베이스 오류
 	}
 	
 	//회원가입을 위한 데이터 추가
 	public int join(User user) {
-		String sqlQuery = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
+		String sqlQuery = "INSERT INTO USER(userID, userPassword, userName, userGender, userEmail) VALUES (?, ?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sqlQuery);
 			pstmt.setString(1, user.getUserID());
@@ -55,7 +55,7 @@ public class UserDAO {
 			pstmt.setString(3, user.getUserName());
 			pstmt.setString(4, user.getUserGender());
 			pstmt.setString(5, user.getUserEmail());
-			return pstmt.executeUpdate();//실행된 결과의 데이터(행) 개수, 없는 경우 0을 반환
+			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

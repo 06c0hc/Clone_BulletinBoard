@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="bbs.BbsDAO" %>
+<%@ page import="java.io.PrintWriter" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+<jsp:useBean id="bbs" class="bbs.Bbs" scope="page"/>
+<jsp:setProperty name="bbs" property="bbsTitle"/>
+<jsp:setProperty name="bbs" property="bbsContent"/>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>게시글 등록 진행 웹페이지</title>
+</head>
+<body>
+	<script type="text/javascript">
+	
+	//HTTP를 HTTPS로 리다이렉트
+	if (document.location.protocol == 'http:') {
+    	document.location.href = document.location.href.replace('http:', 'https:');
+	}
+	</script>
+	<%
+		//세션 확인
+		String userID = null;
+		if(session.getAttribute("userID") != null){
+			userID = (String)session.getAttribute("userID");
+		}
+		//로그인 확인
+		if(userID == null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 하세요.')");
+			script.println("location.href = 'login.jsp'");//login.jsp로 이동
+			script.println("</script>");
+		}else{
+			//게시글 양식(제목,내용)이 모두 작성되었는지 확인
+			if(bbs.getBbsTitle() == null || bbs.getBbsContent() == null){
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('입력되지 않은 사항이 있습니다.')");
+				script.println("history.back()");//이전페이지로 이동
+				script.println("</script>");
+			}else{
+				//게시글 등록 처리
+				BbsDAO bbsDAO = new BbsDAO();
+				int result = bbsDAO.wrtie(bbs.getBbsTitle(), userID, bbs.getBbsContent());
+				if(result == -1){//DB오류 발생시
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('게시글 등록에 실패했습니다.')");
+					script.println("history.back()");//이전 페이지로 이동
+					script.println("</script>");
+				}else{
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("location.href = 'bbs.jsp'");//bbs.jsp로 이동
+					script.println("</script>");
+				}
+			}	
+		}
+	%>
+</body>
+</html>

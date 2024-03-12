@@ -11,10 +11,13 @@
 </head>
 <body>
 	<script type="text/javascript">
+	
+	//HTTP를 HTTPS로 리다이렉트
 	if (document.location.protocol == 'http:') {
     	document.location.href = document.location.href.replace('http:', 'https:');
 	}
 	</script>
+	<!--웹 사이트 헤더 구성-->
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -45,12 +48,12 @@
 			</ul>
 		</div>
 	</nav>
-	
+	<!--회원 가입 양식-->
 	<div class="container">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top: 20px;">
-				<form method="post" action="joinAction.jsp"><!--HTTP의 POST 방식으로 전송-->
+				<form method="post" action="joinAction.jsp"><!--joinAction.jsp페이지로 이동, HTTP의 POST 방식으로 전송-->
 					<h3 style="text-align: center;">회원가입 화면</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">

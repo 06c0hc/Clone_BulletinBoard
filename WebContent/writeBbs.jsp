@@ -12,16 +12,20 @@
 </head>
 <body>
 	<script type="text/javascript">
+	
+	//HTTP를 HTTPS로 리다이렉트
 	if (document.location.protocol == 'http:') {
     	document.location.href = document.location.href.replace('http:', 'https:');
 	}
 	</script>
 	<%
+		//세션 확인
 		String userID = null;
 		if(session.getAttribute("userID") != null){
 			userID = (String)session.getAttribute("userID");
 		}
 	%>
+	<!--웹 사이트 헤더-->
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -39,7 +43,7 @@
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
 			</ul>
 			<%
-				if(userID == null){
+				if(userID == null){//로그인 되지 않은 경우
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -54,7 +58,7 @@
 				</li>
 			</ul>
 			<%
-				}else{	
+				}else{//로그인 된 경우
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -73,9 +77,10 @@
 			
 		</div>
 	</nav>
+	<!--게시글 작성 양식-->
 	<div class = "container">
 		<div class = "row">
-		<form method="post" action="writeAction.jsp"><!--HTTP의 POST방식으로 전송 -->
+		<form method="post" action="writeBbsAction.jsp"><!--HTTP의 POST방식으로 전송, writeBbsAction.jsp로 이동-->
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead><!--게시글 작성 머리글 표시-->
 					<tr>

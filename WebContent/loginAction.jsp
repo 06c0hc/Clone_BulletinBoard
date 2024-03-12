@@ -15,21 +15,24 @@
 </head>
 <body>
 	<script type="text/javascript">
+	
+	//HTTP를 HTTPS로 리다이렉트
 	if (document.location.protocol == 'http:') {
     	document.location.href = document.location.href.replace('http:', 'https:');
 	}
 	</script>
 	<%
+		//세션 확인
 		String userID = null;
-		if(session.getAttribute("userID") != null){//이미 세션정보가 있다면(=이미 로그인이 되어있음을 의미함) 그 세션을 가져옴
+		if(session.getAttribute("userID") != null){
 			userID = (String)session.getAttribute("userID");
 		}
-		//이미 로그인이 되어있다면 main페이지로 이동
+		//로그인 확인
 		if(userID != null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('이미 로그인이 되어있습니다.')");
-			script.println("location.href = 'main.jsp'");
+			script.println("location.href = 'main.jsp'");//이미 로그인 된 경우 main.jsp로 이동
 			script.println("</script>");
 		}
 		
@@ -41,27 +44,27 @@
 			session.setAttribute("userID", user.getUserID());//세션  할당
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("location.href = 'main.jsp'");
+			script.println("location.href = 'main.jsp'");//main.jsp로 이동
 			script.println("</script>");
 		}
 		if(result == 0){//비밀번호 불일치 시
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('비밀번호가 틀립니다.')");
-			script.println("history.back()");
+			script.println("history.back()");//이전 페이지로 이동
 			script.println("</script>");
 		}
 		if(result == -1){//아이디 미존재 시
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('존재하지 않는 아이디입니다.')");
-			script.println("history.back()");
+			script.println("history.back()");//이전 페이지로 이동
 			script.println("</script>");
 		}
 		if(result == -2){//데이터베이스 오류 발생 시
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('데이터베이스 오류가 발생했습니다.')");
+			script.println("alert('데이터베이스 오류가 발생했습니다.')");//이전 페이지로 이동
 			script.println("history.back()");
 			script.println("</script>");
 		}

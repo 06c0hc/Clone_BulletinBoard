@@ -1,0 +1,51 @@
+package comment;
+
+//´ñ±Û ÀÚ¹ÙºóÁî °´Ã¼
+public class Comment {
+	private int commentID;//´ñ±ÛID
+	private String userID;//ÀÛ¼ºÀÚ ID
+	private int bbsID;//°Ô½Ã±Û ID
+	private  String commentDate;//ÀÛ¼ºÀÏ
+	private String commentContent;//´ñ±Û ³»¿ë
+	private int commentAvailable;//´ñ±Û Á¸Àç À¯¹«
+	
+	
+	public int getCommentID() {
+		return commentID;
+	}
+	public void setCommentID(int commentID) {
+		this.commentID = commentID;
+	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public int getBbsID() {
+		return bbsID;
+	}
+	public void setBbsID(int bbsID) {
+		this.bbsID = bbsID;
+	}
+	public String getCommentDate() {
+		return commentDate;
+	}
+	public void setCommentDate(String commentDate) {
+		this.commentDate = commentDate;
+	}
+	public String getCommentContent() {
+		return commentContent;
+	}
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
+	}
+	public int getCommentAvailable() {
+		return commentAvailable;
+	}
+	public void setCommentAvailable(int commentAvailable) {
+		this.commentAvailable = commentAvailable;
+	}
+	
+	
+}

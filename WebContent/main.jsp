@@ -12,16 +12,21 @@
 </head>
 <body>
 	<script type="text/javascript">
+	
+	//HTTP를 HTTPS로 리다이렉트
 	if (document.location.protocol == 'http:') {
     	document.location.href = document.location.href.replace('http:', 'https:');
 	}
 	</script>
+	
 	<%
+		//세션 확인
 		String userID = null;
-		if(session.getAttribute("userID") != null){//세션정보가 있다면 그 세션 정보를 가져옴
+		if(session.getAttribute("userID") != null){
 			userID = (String)session.getAttribute("userID");
 		}
 	%>
+	<!--웹 사이트 헤더-->
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -31,6 +36,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+			<!--좌측에 "JSP 게시판 웹 사이트" 링크-->
 			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -39,7 +45,7 @@
 				<li><a href="bbs.jsp">게시판</a></li>
 			</ul>
 			<%
-				if(userID == null){//로그인이 되어있지 않다면
+				if(userID == null){//로그인되지 않은 경우
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -54,7 +60,7 @@
 				</li>
 			</ul>
 			<%
-				}else{//이미 로그인이 되어있다면(그 회원은 회원가입 페이지로는 접속할 수 없음)
+				}else{//로그인 된 경우(그 회원은 회원가입 페이지로는 접속할 수 없음)
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
