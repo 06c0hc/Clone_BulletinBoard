@@ -6,6 +6,8 @@
 2024/01/01 ~ 2024/01/08 : 게시판 구현
 
 2024/01/27 ~ 2024/02/05 : HTTPS 통신 구현
+
+2024/02/10 ~ 2024/03/23 : 프로젝트의 ERD 설계, 방문자 수 확인 및 댓글&답글 관리 기능 구현 
 #
 
 # 사용한 기술 스택
@@ -15,26 +17,17 @@
 + DBMS : MySQL 5.7.18
 + Framework : Bootstrap 3.3.7
 + Protocol : HTTP(S)
++ S/W architectural pattern : MVC(Model-View-Controller)
 #
 
-# 프로젝트를 만들어보면서 알게된 것들
-+ Network
-  - HTTP 통신 방식에 세션을 사용하여 상태정보를 유지(statusful)하는 방법을 알게 되었다.
-  - SSL 인증서를 적용하여 HTTPS 통신을 구현하는 방법을 알게 되었다.
-+ DB
-  - DAO(Data Access Object)를 이용하여 DB에 접근 및 데이터를 처리하는 방법을 알 수 있었다.
-+ Security
-  - PreparedStatement와 바인딩 변수를 사용하여 SQL주입(SQLInjection)을 방지하는 방법을 알게 되었다.
-  - 특수문자 처리를 통해 크로스 사이트 스크립팅(XSS)을 방지하는 방법을 알게 되었다.
-+ etc
-  - CAFE24 웹서버 호스팅을 이용하여 직접 웹 프로젝트를 배포해봄으로써 웹 프로젝트의 배포 과정을 알 수 있었다.
+# 프로젝트의 ERD 구조
+![프로젝트 ERD](./JSP_Web_BBS_ERD.png)
 #
 
-# 이 프로젝트에 추가로 적용할 사항들
+# 이 프로젝트에 추가로 적용한 사항들
 
-+ 기능 추가 : 게시판 방문자 수 체크, 댓글 달기
++ 기능 추가 : 게시판 방문자 수 확인, 댓글&답글 관리 기능(적용 완료) : [방문자 수 확인, 댓글&답글 관리 기능 ](https://itknowledgewarehouse.tistory.com/210)
 + 통신 방식을 HTTP -> HTTPS 로 변경(적용 완료) : [HTTPS 통신 구현 과정 정리](https://itknowledgewarehouse.tistory.com/213)
-+ 연동된 DBMS를  MySQL -> MariaDB로 변경
 
 #
 
@@ -42,4 +35,4 @@
 
 현재 CAFE24 호스팅 서버에 배포된 상태입니다. 아래 링크를 누르면 사이트로 접속할 수 있습니다.
 
-<https://devchh006.cafe24.com/BBS/main.jsp>
+<https://devchh006.cafe24.com/BBS>
