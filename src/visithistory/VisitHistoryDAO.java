@@ -70,6 +70,21 @@ public class VisitHistoryDAO {
 		return -1; //데이터베이스 오류
 	}
 	
+	//전체 방문자 수
+	public int getAllVisitors() {
+		String sqlQuery = "SELECT COUNT(*) FROM VISIT_HISTORY";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);//전체 방문자 수를 반환
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	
 	//방문 기록 추가
 	public int writeVisitHistory() {
 		String sqlQuery = "INSERT INTO VISIT_HISTORY(visitHistoryID, visitDate) VALUES(?, ?)";

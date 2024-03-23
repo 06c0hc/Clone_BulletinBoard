@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="visithistory.VisitHistoryDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,8 @@
 		if(session.getAttribute("userID") != null){
 			userID = (String)session.getAttribute("userID");
 		}
+		
+		VisitHistoryDAO vhDAO = new VisitHistoryDAO();
 	%>
 	<!--웹 사이트 헤더-->
 	<nav class="navbar navbar-default">
@@ -80,11 +83,15 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="jumbotron">
+		<div class="container"  style="float: left; width: 200px; margin-right: 30px;">
+			<h1 style="text-align: center;">방문자 수</h1>
+			<p style="font-size: 40px; text-align: center;">Today : <%=vhDAO.getVisitors()%></p>
+			<p style="font-size: 40px; text-align: center;">Total : <%=vhDAO.getAllVisitors()%></p>
+		</div>
+		<div class="jumbotron" style="float: right; width: 700px;">
 			<div class="contaner">
-				<h1>웹 사이트 소개</h1>
-				<p>이 웹 사이트는 부트스트랩으로 만든 JSP 웹 사이트입니다. 최소한의 간단한 로직만을 이용해서 개발했습니다. 디자인 템플릿으로는 부트스트랩을 이용했습니다.</p>
-				<p><a class="btn btn-primary btn-pull" href="https://github.com/06c0hc/Clone_BulletinBoard" role="button">자세히 알아보기</a></p>
+				<h1>안내</h1>
+				<p>어서오세요. 이 웹 사이트는 JSP를 활용하여 개발한 웹 게시판입니다. 하단에 슬라이드 이미지를 클릭 시 제 개발 블로그 및 깃허브도 둘러보실 수 있습니다.</p>
 			</div>
 		</div>
 	</div>
@@ -93,17 +100,15 @@
 			<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
-			<div class="carousel-inner">
+			<div class="carousel-inner text-center">
 				<div class="item active">
-					<img src="imageset/1.jpg">
+					<!--깃허브 이미지 클릭 시 깃허브 페이지로 이동-->
+					<a href="https://github.com/06c0hc/Clone_BulletinBoard"><img src="imageset/GitHubLogo.png" class="center-block"></a>
 				</div>
 				<div class="item">
-					<img src="imageset/2.jpg">
-				</div>
-				<div class="item">
-					<img src="imageset/3.jpg">
+					<!--티스토리 이미지 클릭 시 티스토리 페이지로 이동-->
+					<a href="https://itknowledgewarehouse.tistory.com"><img src="imageset/TistoryLogo.png" class="center-block"></a>
 				</div>
 			</div>
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">

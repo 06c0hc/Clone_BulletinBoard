@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="comment.CommentDAO" %>
 <%@ page import="java.io.PrintWriter" %>
@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>댓글 등록 진행 웹페이지</title>
 </head>
 <body>
@@ -43,7 +43,7 @@
 				script.println("</script>");
 			}
 			//댓글 내용이 작성되었는지 확인
-			if(comment.getCommentContent() == null){
+			if(comment.getCommentContent() == null||comment.getCommentContent() == ""){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력된 내용이 없습니다.')");
@@ -53,6 +53,14 @@
 				//댓글 등록 처리
 				CommentDAO cmtDAO = new CommentDAO();
 				int result = cmtDAO.write(userID, bbsID, comment.getCommentContent());
+				//오류 확인용 메시지
+				System.out.println("POST로 전송된 CommentContent: " + request.getParameter("commentContent"));
+				System.out.println("cmtDAO is null :  "+ (cmtDAO==null));//CommentDAO가 null이 아님을 확인.
+				System.out.println("result: " + result);//-1임을 확인.
+				System.out.println("userID: " + userID);//댓글 작성자ID가 맞음.
+				System.out.println("bbsID: " + bbsID);//댓글이 작성된 게시글의 ID가 맞음.
+				
+				System.out.println("commentContent: "+comment.getCommentContent());//댓글내용이 깨져서 출력됨.
 				if(result == -1){//DB오류 발생시
 					PrintWriter script = response.getWriter();
 					script.println("<script>");

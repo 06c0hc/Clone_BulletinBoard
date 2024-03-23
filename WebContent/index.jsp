@@ -24,42 +24,34 @@
 	</script>
 	
 	<%
-		//클라이언트가 방문했다면 visitClient를 true로 바꾸고 쿠키에 넣어서 클라이언트에 저장
-		//요청정보의 쿠키 항목 중 방문 여부을 확인
+		//쿠키를 통해  클라이언트의 방문 여부를 확인
 		boolean isVisit = false;//방문 여부
-		Cookie[] cookies = request.getCookies();
+		Cookie[] cookies = request.getCookies();//요청 정보의 쿠키 목록
 		
-		//쿠키값들을 모두 가져옴
+		//쿠키 목록 조회
 		for(int i =0; (cookies != null) && (i < cookies.length); i++){
-			if(cookies[i].getName().equals("isVisit")){
+			if(cookies[i].getName().equals("isVisit")){//클라이언트의 방문 여부 조회
 				isVisit = Boolean.parseBoolean(cookies[i].getValue());
 			}
 		}
-		//방문 기록 확인
+		//오늘 처음 방문 시 방문 처리
 		if(isVisit==false){
-			isVisit=true;//방문 처리
-			//방문 기록
+			isVisit=true;
 			VisitHistoryDAO vhDAO = new VisitHistoryDAO();
 			vhDAO.writeVisitHistory();
 		}
-		//24시간 - 현재 시간 = 남은 시간
-		int dayOfHours = 24*60*60;//24시간
-		
-		
+		//다음날 자정 - 현재 시간 = 오늘 남은 시간
 		LocalDate localDate = LocalDate.now();
 		ZoneId zoneID = ZoneId.of("Asia/Seoul");
-		ZonedDateTime tomorrowMidnight = ZonedDateTime.of(localDate.plusDays(1), LocalTime.MIDNIGHT, zoneID);
-		ZonedDateTime now = ZonedDateTime.of(localDate, LocalTime.now(), zoneID);
-		System.out.println("서울 시간대 기준 현재 시간: " + now);
+		ZonedDateTime tomorrowMidnight = ZonedDateTime.of(localDate.plusDays(1), LocalTime.MIDNIGHT, zoneID);//다음날 자정
+		ZonedDateTime now = ZonedDateTime.of(localDate, LocalTime.now(), zoneID);//오늘 남은 시간
 		long epochSeconds1 = now.toEpochSecond();
-		System.out.println("서울 시간대 기준 다음날 자정: " + tomorrowMidnight);//현재 날짜를 기준으로 다음날 자정을 계산
 		long epochSeconds2 = tomorrowMidnight.toEpochSecond();
 		int result = (int)(epochSeconds2-epochSeconds1);
-		System.out.println("서울 시간대 기준 하루의 남은 시간 : " + result);
-		System.out.println("서울 시간대 기준 하루의 남은 시간 : " + result/(60*60) + "시"+(result/60)%60 + "분"+ result%60 + "초");
-		//방문 정보 쿠키를 생성해서 응답
+		
+		//방문 정보 쿠키를 생성해서 응답으로 전송
 		Cookie cookie = new Cookie("isVisit", String.valueOf(isVisit));
-		cookie.setMaxAge(result);//자정까지만 유지
+		cookie.setMaxAge(result);//쿠키는 자정까지만 유지
 		response.addCookie(cookie);
 		
 	%>
