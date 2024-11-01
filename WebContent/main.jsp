@@ -91,32 +91,8 @@
 		<div class="jumbotron" style="float: right; width: 700px;">
 			<div class="contaner">
 				<h1>안내</h1>
-				<p>어서오세요. 이 웹 사이트는 JSP를 활용하여 개발한 웹 게시판입니다. 하단에 슬라이드 이미지를 클릭 시 제 개발 블로그 및 깃허브도 둘러보실 수 있습니다.</p>
+				<p>어서오세요. 이 웹 사이트는 JSP를 활용하여 개발한 웹 게시판입니다.</p>
 			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			</ol>
-			<div class="carousel-inner text-center">
-				<div class="item active">
-					<!--깃허브 이미지 클릭 시 깃허브 페이지로 이동-->
-					<a href="https://github.com/06c0hc/Clone_BulletinBoard"><img src="imageset/GitHubLogo.png" class="center-block"></a>
-				</div>
-				<div class="item">
-					<!--티스토리 이미지 클릭 시 티스토리 페이지로 이동-->
-					<a href="https://itknowledgewarehouse.tistory.com"><img src="imageset/TistoryLogo.png" class="center-block"></a>
-				</div>
-			</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right"></span>
-			</a>
 		</div>
 	</div>
 	<!-- 제이쿼리 자바스크릡트 추가 -->
